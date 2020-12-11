@@ -7,8 +7,9 @@ namespace CalliColor {
     * Legt die Helligkeit für den gesamten Neopixelring fest
     */
     //% blockId=CalliBrightness block="setze Helligkeit auf %c"
-    //% c.defl=256
-    export function CalliHelligkeit(c: number){
+    //% c.defl=128
+    //% c.min=0 c.max=256
+    export function CalliBrightness(c: number){
     Callistrip.setBrightness(c)
     Callistrip.show()
     }
