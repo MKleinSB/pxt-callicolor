@@ -1,5 +1,11 @@
 let Callistrip = neopixel.create(DigitalPin.P0, 12, NeoPixelMode.RGB)
 
+const enum Richtung {
+    //% block="Vorwärts"
+    forward = 1,
+    //% block="Rückwärts"
+    backward = -1
+}
 // gerade https://github.com/BrightWearables/pxt-microbit-brightboard
 // gefunden. Sieht so ähnlich aus wie mein CalliColorboard.
 // Von dort konnte ich den Code für den Colornumberpicker entleihen. THX!
@@ -7,7 +13,7 @@ let Callistrip = neopixel.create(DigitalPin.P0, 12, NeoPixelMode.RGB)
 //% color=#5882FA icon="\uf005"
 namespace CalliColor {
    
-    //% block="zeige Farbe $color an Pixel $pixel"
+    //% block="zeige Farbe %color an Pixel %pixel"
     //% color.shadow="CalliColorNumberPicker"  color.defl=0xff0000
     //% pixel.min=0 pixel.max=11
     export function ShowColorOnPixel(color: number, pixel:number) {
@@ -49,7 +55,7 @@ namespace CalliColor {
     * Färbt alle LEDs in einer Farbe. 
     * Schwarz schaltet alle LEDs aus
     */
-    //% block="zeige Ringfarbe $color"
+    //% block="zeige Ringfarbe %color"
     //% color.shadow=CalliColorNumberPicker
     //% color.defl='#4df243'
     export function showCalliColor(color: number) {
@@ -85,6 +91,7 @@ namespace CalliColor {
      * @param l Helligkeit from 0 to 99
      */
     //% blockId=calliHSL block="HSL: Farbton %h|Sättigung %s|Helligkeit %l"
+    //% s.defl=99 l.defl=50
     //% group=Farben
     export function callihsl(h: number, s: number, l: number): number {
         return neopixel.hsl(h,s,l);
@@ -109,12 +116,13 @@ namespace CalliColor {
     }
 
     /**
-      * Lässt die LEDs nach eine Stelle nach rechts rotieren
+      * Lässt die LEDs eine Stelle nach rechts oder links rotieren
       */
-    //% blockId=Callirotate block="Farben rotieren"
+    //% blockId=Callirotate 
+    //% block="Pixel rotieren %r"
     //% group="... mehr"
-    export function Callirotate() {
-        Callistrip.rotate()
+    export function Callirotate(r: Richtung) {
+        Callistrip.rotate(r)
         Callistrip.show()
     }
 
