@@ -1,19 +1,19 @@
-let Callistrip = neopixel.create(DigitalPin.P0, 5, NeoPixelMode.RGB)
+let Callistrip = neopixel.create(DigitalPin.P0, 12, NeoPixelMode.RGB)
+
+// gerade https://github.com/BrightWearables/pxt-microbit-brightboard
+// gefunden. Sieht so ähnlich aus wie mein CalliColorboard.
+// Von dort konnte ich den Code für den Colornumberpicker entleihen. THX!
 
 //% color=#5882FA icon="\uf005"
 namespace CalliColor {
-
-    /**
-    * Legt die Helligkeit für den gesamten Neopixelring fest
-    */
-    //% blockId=CalliBrightness block="setze Helligkeit auf %c"
-    //% c.defl=128
-    //% c.min=0 c.max=256
-    export function CalliBrightness(c: number){
-    Callistrip.setBrightness(c)
-    Callistrip.show()
+   
+    //% block="zeige Farbe $color an Pixel $pixel"
+    //% color.shadow="CalliColorNumberPicker"  color.defl=0xff0000
+    //% pixel.min=0 pixel.max=11
+    export function ShowColorOnPixel(color: number, pixel:number) {
+        Callistrip.setPixelColor(pixel, color)
+        Callistrip.show()
     }
-
     //% block="zeige Farbe an Pixel $color1 $color2 $color3 $color4 $color5 $color6 $color7 $color8 $color9 $color10 $color11 $color12"
     //% color1.shadow="CalliColorNumberPicker"  color1.defl=0xff0000
     //% color2.shadow="CalliColorNumberPicker"  color2.defl=0xFF7F00
@@ -29,13 +29,106 @@ namespace CalliColor {
     //% color12.shadow="CalliColorNumberPicker"  color12.defl=0xFF007F
     //% inlineInputMode=inline
 
-    export function showColorpixel(color1: number, color2: number, color3: number, color4: number, color5: number, color6: number, color7: number, color8: number, color9: number, color10: number, color11: number, color12: number) {
+    export function ShowColorPixel(color1: number, color2: number, color3: number, color4: number, color5: number, color6: number, color7: number, color8: number, color9: number, color10: number, color11: number, color12: number) {
         Callistrip.setPixelColor(0, color1)
         Callistrip.setPixelColor(1, color2)
         Callistrip.setPixelColor(2, color3)
         Callistrip.setPixelColor(3, color4)
         Callistrip.setPixelColor(4, color5)
+        Callistrip.setPixelColor(5, color6)
+        Callistrip.setPixelColor(6, color7)
+        Callistrip.setPixelColor(7, color8)
+        Callistrip.setPixelColor(8, color9)
+        Callistrip.setPixelColor(9, color10)
+        Callistrip.setPixelColor(10, color11)
+        Callistrip.setPixelColor(11, color12)
         Callistrip.show()
+    }
+    
+    /**
+    * Färbt alle LEDs in einer Farbe. 
+    * Schwarz schaltet alle LEDs aus
+    */
+    //% block="zeige Ringfarbe $color"
+    //% color.shadow=CalliColorNumberPicker
+    //% color.defl='#4df243'
+    export function showCalliColor(color: number) {
+        Callistrip.showColor(color)
+    }
+    
+    /**
+    * Legt die Helligkeit für den gesamten Neopixelring fest
+    */
+    //% blockId=CalliBrightness block="setze Helligkeit auf %c"
+    //% c.defl=128
+    //% c.min=0 c.max=256
+    //% group="... mehr"
+    export function CalliBrightness(c: number){
+    Callistrip.setBrightness(c)
+    Callistrip.show()
+    } 
+
+
+   /**
+    * Konvertiert Rot-, Grün- und Blauanteil in eine RGB Farbe
+    */
+    //% blockId="Callineopixel_rgb" block="RGB: Rot %red|Grün %green|Blau %blue"
+    //% group=Farben
+    export function rgb(red: number, green: number, blue: number): number {
+        return ((red & 0xFF) << 16) | ((green & 0xFF) << 8) | (blue & 0xFF);
+    }
+
+   /**
+     * Converts a hue saturation luminosity value into a RGB color
+     * @param h Farbton from 0 to 360
+     * @param s Sättigung from 0 to 99
+     * @param l Helligkeit from 0 to 99
+     */
+    //% blockId=calliHSL block="HSL: Farbton %h|Sättigung %s|Helligkeit %l"
+    //% group=Farben
+    export function callihsl(h: number, s: number, l: number): number {
+        return neopixel.hsl(h,s,l);
+    } 
+
+    /**
+    * Konvertiert den Farbnamen in eine Zahl
+    */
+    //% blockId=CalliColor block="%c"
+    //% group=Farben
+    export function CalliColor(c: NeoPixelColors): number {
+        return c;
+    }
+    
+    /**
+    * Lässt die LEDs in Regenbogenfarben leuchten
+    */
+    //% blockId=Callirainbow block="zeige Regenbogen"
+    export function Regenbogen() {
+        Callistrip.showRainbow(1, 300);
+        Callistrip.show()
+    }
+
+    /**
+      * Lässt die LEDs nach eine Stelle nach rechts rotieren
+      */
+    //% blockId=Callirotate block="Farben rotieren"
+    //% group="... mehr"
+    export function Callirotate() {
+        Callistrip.rotate()
+        Callistrip.show()
+    }
+
+    /**
+     * Zeigt ein Balkendiagramm basierend auf `wert` und `max`.
+     * Wenn `max` 0 ist, wird der Balken automatisch angepasst.
+     * @param wert aktueller zu zeichnender Wert
+     * @param max Maximalwert, z.B.: 255
+     */
+    //% blockId=calli_show_bar_graph block="zeige Balkendiagramm von %wert|bis %max"
+    //% max.defl=1023
+    //% group="... mehr"
+    export function showCalliBarGraph(wert: number, max: number) {
+        Callistrip.showBarGraph(wert, max)
     }
 
   //% blockId="variable_color_for_led" block="$ledval1|$ledval2||$ledval3|$ledval4|$ledval5|$ledval6|$ledval7|$ledval8|$ledval9|$ledval10|$ledval11|$ledval12"
@@ -51,7 +144,7 @@ namespace CalliColor {
     //% ledval10.shadow="CalliColorNumberPicker"
     //% ledval11.shadow="CalliColorNumberPicker"
     //% ledval12.shadow="CalliColorNumberPicker"
-    //% inlineInputMode=inline group=Testblöcke
+    //% inlineInputMode=inline group=Testlabor
     //% weight=125
     export function colorForLedVariableLength(ledval1: number, ledval2?: number, ledval3?: number, ledval4?: number, ledval5?: number, ledval6?: number, ledval7?: number, ledval8?: number, ledval9?: number, ledval10?: number, ledval11?: number, ledval12?: number) {
         let colorList = [ledval1, ledval2];
@@ -68,66 +161,8 @@ namespace CalliColor {
     }
 
     /**
-    * Färbt alle LEDs in einer Farbe. 
-    * Schwarz schaltet alle LEDs aus
+	* Custom color picker
     */
-    //% block="zeige Ringfarbe $color"
-    //% color.shadow=CalliColorNumberPicker
-    //% color.defl='#000000'
-    export function showCalliColor(color: number) {
-        Callistrip.showColor(color)
-    }
-
-    /**
-    * Konvertiert den Farbnamen in eine Zahl
-    */
-
-    //% blockId=CalliColor block="%c"
-    export function CalliColor(c: NeoPixelColors): number {
-        return c;
-    }
-    
-    /**
-    * Konvertiert Rot-, Grün- und Blauanteil in eine RGB Farbe
-    */
-    //% blockId="Callineopixel_rgb" block="Rot %red|Grün %green|Blau %blue"
-    export function rgb(red: number, green: number, blue: number): number {
-        return ((red & 0xFF) << 16) | ((green & 0xFF) << 8) | (blue & 0xFF);
-    }
-
-    /**
-    * Lässt die LEDs in Regenbogenfarben leuchten
-    */
-    //% blockId=Callirainbow block="zeige Regenbogen"
-    export function Regenbogen() {
-        Callistrip.showRainbow(1, 300);
-        Callistrip.show()
-    }
-
-    /**
-      * Lässt die LEDs nach eine Stelle nach rechts rotieren
-      */
-    //% blockId=Callirotate block="Farben rotieren"
-    export function Callirotate() {
-        Callistrip.rotate()
-        Callistrip.show()
-    }
-
-
-    /**
-     * Zeigt ein Balkendiagramm basierend auf `wert` und `max`.
-     * Wenn `max` 0 ist, wird der Balken automatisch angepasst.
-     * @param wert aktueller zu zeichnender Wert
-     * @param max Maximalwert, z.B.: 255
-     */
-    //% blockId=calli_show_bar_graph block="zeige Balkendiagramm von %wert|bis %max"
-    //% max.defl=1023
-    export function showCalliBarGraph(wert: number, max: number) {
-        Callistrip.showBarGraph(wert, max)
-    }
-       /**
-	 * Custom color picker
-     */
     //% blockId=CalliColorNumberPicker block="%value"
     //% blockHidden=true
     //% value.fieldEditor="colornumber" value.fieldOptions.decompileLiterals=true
