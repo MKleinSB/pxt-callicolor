@@ -1,7 +1,8 @@
 {
     "name": "pxt-callicolor",
-    "version": "0.0.7",
-    "description": "Blocks for the Callicolor RGB-LED circle",
+    "version": "0.0.8",
+    "description": "Erweiterung für die Callicolor RGB-LED Platine",
+
     "dependencies": {
         "core": "*",
         "neopixel": "github:microsoft/pxt-neopixel#v0.7.3"
