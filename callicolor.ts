@@ -1,8 +1,9 @@
-let Callistrip = neopixel.create(DigitalPin.P0, 12, NeoPixelMode.RGB)
 
 // gerade https://github.com/BrightWearables/pxt-microbit-brightboard
 // gefunden. Sieht so ähnlich aus wie mein CalliColorboard.
 // Von dort konnte ich den Code für den Colornumberpicker entleihen. THX!
+
+let Callistrip = neopixel.create(DigitalPin.P0, 12, NeoPixelMode.RGB)
 
 //% color=#5882FA icon="\uf005"
 namespace CalliColor {
@@ -129,35 +130,6 @@ namespace CalliColor {
     //% group="... mehr"
     export function showCalliBarGraph(wert: number, max: number) {
         Callistrip.showBarGraph(wert, max)
-    }
-
-  //% blockId="variable_color_for_led" block="$ledval1|$ledval2||$ledval3|$ledval4|$ledval5|$ledval6|$ledval7|$ledval8|$ledval9|$ledval10|$ledval11|$ledval12"
-    //% ledval1.shadow="CalliColorNumberPicker"
-    //% ledval2.shadow="CalliColorNumberPicker"
-    //% ledval3.shadow="CalliColorNumberPicker"
-    //% ledval4.shadow="CalliColorNumberPicker"
-    //% ledval5.shadow="CalliColorNumberPicker"
-    //% ledval6.shadow="CalliColorNumberPicker"
-    //% ledval7.shadow="CalliColorNumberPicker"
-    //% ledval8.shadow="CalliColorNumberPicker"
-    //% ledval9.shadow="CalliColorNumberPicker"
-    //% ledval10.shadow="CalliColorNumberPicker"
-    //% ledval11.shadow="CalliColorNumberPicker"
-    //% ledval12.shadow="CalliColorNumberPicker"
-    //% inlineInputMode=inline group=Testlabor
-    //% weight=125
-    export function colorForLedVariableLength(ledval1: number, ledval2?: number, ledval3?: number, ledval4?: number, ledval5?: number, ledval6?: number, ledval7?: number, ledval8?: number, ledval9?: number, ledval10?: number, ledval11?: number, ledval12?: number) {
-        let colorList = [ledval1, ledval2];
-        if (typeof ledval3 !== 'undefined') colorList.push(ledval3);
-        if (typeof ledval4 !== 'undefined') colorList.push(ledval4);
-        if (typeof ledval5 !== 'undefined') colorList.push(ledval5);
-        if (typeof ledval6 !== 'undefined') colorList.push(ledval6);
-        if (typeof ledval7 !== 'undefined') colorList.push(ledval7);
-        if (typeof ledval8 !== 'undefined') colorList.push(ledval8);
-        if (typeof ledval9 !== 'undefined') colorList.push(ledval9);
-        if (typeof ledval10 !== 'undefined') colorList.push(ledval10);
-        if (typeof ledval11 !== 'undefined') colorList.push(ledval11);
-        if (typeof ledval12 !== 'undefined') colorList.push(ledval12);
     }
 
     /**

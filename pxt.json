@@ -1,10 +1,9 @@
 {
     "name": "pxt-callicolor",
-    "version": "0.0.6",
-    "description": "",
+    "version": "0.0.7",
+    "description": "Blocks for the Callicolor RGB-LED circle",
     "dependencies": {
         "core": "*",
-        "radio": "*",
         "neopixel": "github:microsoft/pxt-neopixel#v0.7.3"
     },
     "files": [
@@ -20,5 +19,5 @@
     "supportedTargets": [
         "calliopemini"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
