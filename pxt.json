@@ -1,6 +1,6 @@
 {
     "name": "pxt-callicolor",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "",
     "dependencies": {
         "core": "*",
@@ -18,8 +18,7 @@
     ],
     "public": true,
     "supportedTargets": [
-        "calliopemini",
-        "microbit"
+        "calliopemini"
     ],
     "preferredEditor": "blocksprj"
 }
