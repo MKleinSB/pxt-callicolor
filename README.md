@@ -18,12 +18,10 @@ Um dieses Repository in MakeCode zu bearbeiten.
 * klicke auf **Importieren** und dann auf **Importiere URL**
 * füge **https://github.com/mkleinsb/pxt-callicolor** ein und klicke auf Importieren
 
-## Blockvorschau
+## CalliColor
+Mehr zu CalliColor auf hackster! https://www.hackster.io/MKlein/callicolor-01cc4b
 
-Dieses Bild zeigt den Blockcode vom letzten Commit im Master an.
-Die Aktualisierung dieses Bildes kann einige Minuten dauern.
-
-![Eine gerenderte Ansicht der Blöcke](https://github.com/mkleinsb/pxt-callicolor/raw/master/.github/makecode/blocks.png)
+![](https://github.com/mkleinsb/pxt-callicolor/raw/master/Unbenannt.png)
 
 #### Metadaten (verwendet für Suche, Rendering)
 
