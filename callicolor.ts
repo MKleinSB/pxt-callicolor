@@ -13,6 +13,9 @@ const enum Richtung {
 //% color=#5882FA icon="\uf005"
 namespace CalliColor {
    
+let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
+               0x00FFFE, 0x007FFF,0x0000FF,0x7F00FF,0xFE00FF,0xFF007F]
+
     //% block="zeige Farbe %color an Pixel %pixel"
     //% color.shadow="CalliColorNumberPicker"  color.defl=0xff0000
     //% pixel.min=0 pixel.max=11
@@ -20,7 +23,21 @@ namespace CalliColor {
         Callistrip.setPixelColor(pixel, color)
         Callistrip.show()
     }
-    //% block="zeige Farbe an Pixel $color1 $color2 $color3 $color4 $color5 $color6 $color7 $color8 $color9 $color10 $color11 $color12"
+
+    //% block="zeige Regenbogenfarbe an Pixel %pixel"
+    //% pixel.min=0 pixel.max=11
+    export function ShowRainbowColorOnPixel(pixel:number) {
+        Callistrip.setPixelColor(pixel, ccolors[pixel])
+        Callistrip.show()
+    }
+
+    //% block="zeige Zufallsfarbe an Pixel %pixel"
+    //% pixel.min=0 pixel.max=11
+    export function ShowRandomColorOnPixel(pixel:number) {
+        Callistrip.setPixelColor(pixel, ccolors[randint(0, 11)])
+        Callistrip.show()
+    }
+    //% block="zeige Farben an Pixeln $color1 $color2 $color3 $color4 $color5 $color6 $color7 $color8 $color9 $color10 $color11 $color12"
     //% color1.shadow="CalliColorNumberPicker"  color1.defl=0xff0000
     //% color2.shadow="CalliColorNumberPicker"  color2.defl=0xFF7F00
     //% color3.shadow="CalliColorNumberPicker"  color3.defl=0xFFFE00
@@ -67,7 +84,7 @@ namespace CalliColor {
     */
     //% blockId=CalliBrightness block="setze Helligkeit auf %c"
     //% c.defl=128
-    //% c.min=0 c.max=256
+    //% c.min=0 c.max=255
     //% group="... mehr"
     export function CalliBrightness(c: number){
     Callistrip.setBrightness(c)
@@ -139,34 +156,6 @@ namespace CalliColor {
         Callistrip.showBarGraph(wert, max)
     }
 
-  //% blockId="variable_color_for_led" block="$ledval1|$ledval2||$ledval3|$ledval4|$ledval5|$ledval6|$ledval7|$ledval8|$ledval9|$ledval10|$ledval11|$ledval12"
-    //% ledval1.shadow="CalliColorNumberPicker"
-    //% ledval2.shadow="CalliColorNumberPicker"
-    //% ledval3.shadow="CalliColorNumberPicker"
-    //% ledval4.shadow="CalliColorNumberPicker"
-    //% ledval5.shadow="CalliColorNumberPicker"
-    //% ledval6.shadow="CalliColorNumberPicker"
-    //% ledval7.shadow="CalliColorNumberPicker"
-    //% ledval8.shadow="CalliColorNumberPicker"
-    //% ledval9.shadow="CalliColorNumberPicker"
-    //% ledval10.shadow="CalliColorNumberPicker"
-    //% ledval11.shadow="CalliColorNumberPicker"
-    //% ledval12.shadow="CalliColorNumberPicker"
-    //% inlineInputMode=inline group=Testlabor
-    //% weight=125
-    export function colorForLedVariableLength(ledval1: number, ledval2?: number, ledval3?: number, ledval4?: number, ledval5?: number, ledval6?: number, ledval7?: number, ledval8?: number, ledval9?: number, ledval10?: number, ledval11?: number, ledval12?: number) {
-        let colorList = [ledval1, ledval2];
-        if (typeof ledval3 !== 'undefined') colorList.push(ledval3);
-        if (typeof ledval4 !== 'undefined') colorList.push(ledval4);
-        if (typeof ledval5 !== 'undefined') colorList.push(ledval5);
-        if (typeof ledval6 !== 'undefined') colorList.push(ledval6);
-        if (typeof ledval7 !== 'undefined') colorList.push(ledval7);
-        if (typeof ledval8 !== 'undefined') colorList.push(ledval8);
-        if (typeof ledval9 !== 'undefined') colorList.push(ledval9);
-        if (typeof ledval10 !== 'undefined') colorList.push(ledval10);
-        if (typeof ledval11 !== 'undefined') colorList.push(ledval11);
-        if (typeof ledval12 !== 'undefined') colorList.push(ledval12);
-    }
 
     /**
 	* Custom color picker
