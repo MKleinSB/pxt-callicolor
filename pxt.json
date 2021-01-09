@@ -1,6 +1,6 @@
 {
     "name": "pxt-callicolor",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "Erweiterung für die Callicolor RGB-LED Platine",
     "dependencies": {
         "core": "*",
