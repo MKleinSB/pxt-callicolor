@@ -9,21 +9,21 @@ const enum Richtung {
 
 const enum cbrightness {
     //% block="100"
-    hp100 = 1,
+    hp1 = 1,
     //% block="80"
-    hp80 = 2,
+    hp2 = 2,
     //% block="60"
-    hp60 = 6,
+    hp6 = 6,
     //% block="40"
-    hp40 = 25,
+    hp25 = 25,
     //% block="20"
-    hp20 = 85
+    hp85 = 85
 }
 // gerade https://github.com/BrightWearables/pxt-microbit-brightboard
 // gefunden. Sieht so ähnlich aus wie mein CalliColorboard.
 // Von dort konnte ich den Code für den Colornumberpicker entleihen. THX!
 
-//% color=#5882FA icon="\uf005"
+//% color=#5882FA icon="\uf005" block="CalliColor"
 namespace CalliColor {
    
 let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
@@ -40,7 +40,6 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
     //% block="zeige Farbe %color an Pixel %pixel Helligkeit %brightnes |\\%"
     //% color.shadow="CalliColorNumberPicker"  color.defl=0xff0000
     //% pixel.min=0 pixel.max=11
-
     export function ShowColorOnPixelbright(color: number, pixel:number, brightnes:cbrightness) {
         let r,g,b:number
         r = (color & 0xff0000) >> 16
@@ -55,21 +54,21 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
     }
 
 
-    
-
-    //% block="zeige Regenbogenfarbe an Pixel %pixel"
+    //% block="zeige Regenbogenfarbe an Pixel %pixel Helligkeit %brightnes |\\%"
     //% pixel.min=0 pixel.max=11
-    export function ShowRainbowColorOnPixel(pixel:number) {
-        Callistrip.setPixelColor(pixel, ccolors[pixel])
+    export function ShowRainbowColorOnPixelbright(pixel:number, brightnes:cbrightness) {
+        let r,g,b,color:number
+        r = (ccolors[pixel] & 0xff0000) >> 16
+        g = (ccolors[pixel] & 0xff00) >> 8
+        b = (ccolors[pixel] & 0xff) // rgb Einzelfarbwerte extrahieren
+        r = Math.idiv(r, brightnes)
+        g = Math.idiv(g, brightnes)
+        b = Math.idiv(b, brightnes) // Helligkeit vermindern
+        color = (r << 16) + (g << 8) + b // Farbe zusammenbauen
+        Callistrip.setPixelColor(pixel, color)
         Callistrip.show()
     }
 
-    //% block="zeige Zufallsfarbe an Pixel %pixel"
-    //% pixel.min=0 pixel.max=11
-    export function ShowRandomColorOnPixel(pixel:number) {
-        Callistrip.setPixelColor(pixel, ccolors[randint(0, 11)])
-        Callistrip.show()
-    }
     //% block="zeige Farben an Pixeln $color1 $color2 $color3 $color4 $color5 $color6 $color7 $color8 $color9 $color10 $color11 $color12"
     //% color1.shadow="CalliColorNumberPicker"  color1.defl=0xff0000
     //% color2.shadow="CalliColorNumberPicker"  color2.defl=0xFF7F00
@@ -112,20 +111,13 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
         Callistrip.showColor(color)
     }
     
-    /**
-    * Legt die Helligkeit für den gesamten Neopixelring fest
-    */
-    //% blockId=CalliBrightness block="setze Helligkeit auf %c"
-    //% c.defl=128
-    //% c.min=0 c.max=255
-    //% group="... mehr"
-    export function CalliBrightness(c: number){
-    Callistrip.setBrightness(c)
-    Callistrip.show()
-    } 
-
-
-   /**
+    //% block="Zufallsfarbe"
+    //% group=Farben
+    export function ShowRandomColor(): number {
+        return ccolors[randint(0, 11)]
+        
+    }
+      /**
     * Konvertiert Rot-, Grün- und Blauanteil in eine RGB Farbe
     */
     //% blockId="Callineopixel_rgb" block="RGB: Rot %red|Grün %green|Blau %blue"
@@ -155,22 +147,25 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
     export function CalliColor(c: NeoPixelColors): number {
         return c;
     }
-    
+
+
     /**
-    * Lässt die LEDs in Regenbogenfarben leuchten
+    * Legt die Helligkeit für den gesamten Neopixelring fest
     */
-    //% blockId=Callirainbow block="zeige Regenbogen"
-    export function Regenbogen() {
-        Callistrip.showRainbow(1, 300);
-        Callistrip.show()
-    }
+    //% blockId=CalliBrightness block="setze Helligkeit auf %c"
+    //% c.defl=128
+    //% c.min=0 c.max=255
+    //% group="... mehr"
+    export function CalliBrightness(c: number){
+    Callistrip.setBrightness(c)
+    Callistrip.show()
+    } 
 
     /**
       * Lässt die LEDs eine Stelle nach rechts oder links rotieren
       */
     //% blockId=Callirotate 
     //% block="Pixel rotieren %r"
-    //% group="... mehr"
     export function Callirotate(r: Richtung) {
         Callistrip.rotate(r)
         Callistrip.show()
