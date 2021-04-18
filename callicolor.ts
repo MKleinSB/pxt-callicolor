@@ -29,14 +29,6 @@ namespace CalliColor {
 let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
                0x00FFFE, 0x007FFF,0x0000FF,0x7F00FF,0xFE00FF,0xFF007F]
 
-    //% block="zeige Farbe %color an Pixel %pixel"
-    //% color.shadow="CalliColorNumberPicker"  color.defl=0xff0000
-    //% pixel.min=0 pixel.max=11
-    export function ShowColorOnPixel(color: number, pixel:number) {
-        Callistrip.setPixelColor(pixel, color)
-        Callistrip.show()
-    }
-
     //% block="zeige Farbe %color an Pixel %pixel Helligkeit %brightnes |\\%"
     //% color.shadow="CalliColorNumberPicker"  color.defl=0xff0000
     //% pixel.min=0 pixel.max=11
