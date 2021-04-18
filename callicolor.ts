@@ -6,6 +6,19 @@ const enum Richtung {
     //% block="Rückwärts"
     backward = -1
 }
+
+const enum cbrightness {
+    //% block="100"
+    hp100 = 1,
+    //% block="80"
+    hp80 = 2,
+    //% block="60"
+    hp60 = 6,
+    //% block="40"
+    hp40 = 25,
+    //% block="20"
+    hp20 = 85
+}
 // gerade https://github.com/BrightWearables/pxt-microbit-brightboard
 // gefunden. Sieht so ähnlich aus wie mein CalliColorboard.
 // Von dort konnte ich den Code für den Colornumberpicker entleihen. THX!
@@ -23,6 +36,26 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
         Callistrip.setPixelColor(pixel, color)
         Callistrip.show()
     }
+
+    //% block="zeige Farbe %color an Pixel %pixel Helligkeit %brightnes |\\%"
+    //% color.shadow="CalliColorNumberPicker"  color.defl=0xff0000
+    //% pixel.min=0 pixel.max=11
+
+    export function ShowColorOnPixelbright(color: number, pixel:number, brightnes:cbrightness) {
+        let r,g,b:number
+        r = (color & 0xff0000) >> 16
+        g = (color & 0xff00) >> 8
+        b = (color & 0xff) // rgb Einzelfarbwerte extrahieren
+        r = Math.idiv(r, brightnes)
+        g = Math.idiv(g, brightnes)
+        b = Math.idiv(b, brightnes) // Helligkeit vermindern
+        color = (r << 16) + (g << 8) + b // Farbe zusammenbauen
+        Callistrip.setPixelColor(pixel, color)
+        Callistrip.show()
+    }
+
+
+    
 
     //% block="zeige Regenbogenfarbe an Pixel %pixel"
     //% pixel.min=0 pixel.max=11
