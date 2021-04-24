@@ -1,9 +1,11 @@
 let Callistrip = neopixel.create(DigitalPin.P0, 12, NeoPixelMode.RGB)
 
 const enum Richtung {
-    //% block="Vorwärts"
+    //% block="forward"
+    //% block.loc.de="Vorwärts"
     forward = 1,
-    //% block="Rückwärts"
+    //% block="backward"
+    //% block.loc.de="Rückwärts"
     backward = -1
 }
 
@@ -29,7 +31,8 @@ namespace CalliColor {
 let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
                0x00FFFE, 0x007FFF,0x0000FF,0x7F00FF,0xFE00FF,0xFF007F]
 
-    //% block="zeige Farbe %color an Pixel %pixel || Helligkeit %brightnes |\\%"
+    //% block="show color %color at pixel %pixel || brightness %brightnes |\\%"
+    //% block.loc.de="zeige Farbe %color an Pixel %pixel || Helligkeit %brightnes |\\%"
     //% color.shadow="CalliColorNumberPicker"  color.defl=0xff0000
     //% pixel.min=0 pixel.max=11 brightnes.defl=cbrightness.hp1
     //% expandableArgumentMode="toggle"
@@ -46,7 +49,8 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
         Callistrip.show()
     }
 
-    //% block="zeige Regenbogenfarbe an Pixel %pixel || Helligkeit %brightnes |\\%"
+    //% block="show rainbowcolor at pixel %pixel || brightness %brightnes |\\%"
+    //% block.loc.de="zeige Regenbogenfarbe an Pixel %pixel || Helligkeit %brightnes |\\%"
     //% pixel.min=0 pixel.max=11 brightnes.defl=cbrightness.hp1
     //% expandableArgumentMode="toggle"
     export function ShowRainbowColorOnPixelbright(pixel:number, brightnes:cbrightness=cbrightness.hp1) {
@@ -62,7 +66,8 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
         Callistrip.show()
     }
 
-    //% block="zeige Farben an Pixeln $color1 $color2 $color3 $color4 $color5 $color6 $color7 $color8 $color9 $color10 $color11 $color12"
+    //% block="show colors on ring $color1 $color2 $color3 $color4 $color5 $color6 $color7 $color8 $color9 $color10 $color11 $color12"
+    //% block.loc.de="zeige Farben an Ring $color1 $color2 $color3 $color4 $color5 $color6 $color7 $color8 $color9 $color10 $color11 $color12"       
     //% color1.shadow="CalliColorNumberPicker"  color1.defl=0xff0000
     //% color2.shadow="CalliColorNumberPicker"  color2.defl=0xFF7F00
     //% color3.shadow="CalliColorNumberPicker"  color3.defl=0xFFFE00
@@ -97,14 +102,16 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
     * Färbt alle LEDs in einer Farbe. 
     * Schwarz schaltet alle LEDs aus
     */
-    //% block="zeige Ringfarbe %color"
+    //% block="show ringcolor %color"
+    //% block.loc.de="zeige Ringfarbe %color"
     //% color.shadow=CalliColorNumberPicker
     //% color.defl='#4df243'
     export function showCalliColor(color: number) {
         Callistrip.showColor(color)
     }
     
-    //% block="Zufallsfarbe"
+    //% block="random color"
+    //% block.loc.de="Zufallsfarbe"
     //% group=Farben
     export function ShowRandomColor(): number {
         return ccolors[randint(0, 11)]
@@ -125,7 +132,8 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
      * @param s Sättigung from 0 to 99
      * @param l Helligkeit from 0 to 99
      */
-    //% blockId=calliHSL block="HSL: Farbton %h|Sättigung %s|Helligkeit %l"
+    //% blockId=calliHSL block="HSL: Hue %h|Saturation %s|brightness %l"
+    //% block.loc.de="HSL: Farbton %h|Sättigung %s|Helligkeit %l"
     //% s.defl=99 l.defl=50
     //% group=Farben
     export function callihsl(h: number, s: number, l: number): number {
@@ -144,7 +152,8 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
     /**
     * Legt die Helligkeit für den gesamten Neopixelring fest
     */
-    //% blockId=CalliBrightness block="setze Helligkeit auf %c"
+    //% blockId=CalliBrightness block="set brightness to %c"
+    //% block.loc.de="setze Helligkeit auf %c"
     //% c.defl=128
     //% c.min=0 c.max=255
     //% group="... mehr"
@@ -157,7 +166,8 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
       * Lässt die LEDs eine Stelle nach rechts oder links rotieren
       */
     //% blockId=Callirotate 
-    //% block="Pixel rotieren %r"
+    //% block="rotate pixel %r"
+    //% block.loc.de="Pixel rotieren %r"
     export function Callirotate(r: Richtung) {
         Callistrip.rotate(r)
         Callistrip.show()
@@ -169,7 +179,8 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
      * @param wert aktueller zu zeichnender Wert
      * @param max Maximalwert, z.B.: 255
      */
-    //% blockId=calli_show_bar_graph block="zeige Balkendiagramm von %wert|bis %max"
+    //% blockId=calli_show_bar_graph block="show bargraph from %wert|to %max"
+    //% block.loc.de="zeige Balkendiagramm von %wert|bis %max"
     //% max.defl=1023
     //% group="... mehr"
     export function showCalliBarGraph(wert: number, max: number) {
