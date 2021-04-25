@@ -45,6 +45,7 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
         g = Math.idiv(g, brightnes)
         b = Math.idiv(b, brightnes) // Helligkeit vermindern
         color = (r << 16) + (g << 8) + b // Farbe zusammenbauen
+        control.waitMicros(120) //fix for ws2812E LEDs
         Callistrip.setPixelColor(pixel, color)
         Callistrip.show()
     }
@@ -62,8 +63,8 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
         g = Math.idiv(g, brightnes)
         b = Math.idiv(b, brightnes) // Helligkeit vermindern
         color = (r << 16) + (g << 8) + b // Farbe zusammenbauen
-        Callistrip.setPixelColor(pixel, color)
         control.waitMicros(120) //fix for ws2812E LEDs
+        Callistrip.setPixelColor(pixel, color)    
         Callistrip.show()
     }
 
