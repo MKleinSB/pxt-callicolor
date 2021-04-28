@@ -50,6 +50,40 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
         Callistrip.show()
     }
 
+/**
+         * Sets a gradient between two colors
+         * @param startColor the start color
+         * @param endColor the end color
+         */
+        //% blockId=lightsetgradient block="zeige Farbverlauf von %startColor=CalliColorNumberPicker nach %endColor=CalliColorNumberPicker"
+        //%  startColor.defl=0xff0000
+        //%   endColor.defl=0x0000ff
+        export function setGradient(startColor: number, endColor: number) {
+            const sr = (startColor & 0xff0000) >> 16;
+            const sg = (startColor & 0xff00) >> 8;
+            const sb = (startColor & 0xff);
+            const er = (endColor & 0xff0000) >> 16;
+            const eg = (endColor & 0xff00) >> 8;
+            const eb = (endColor & 0xff);;
+
+            const end = 12; //12;
+            const start = 0; //0
+            const n1 = 11//end-start-1; 
+            for (let i = start; i < end; ++i) {
+                let x = (i-start) / n1; 
+                const ox = 1 - x;
+                const r = (sr * ox + er * x) | 0;
+                const g = (sg * ox + eg * x) | 0;
+                const b = (sb * ox + eb * x) | 0;
+
+                Callistrip.setPixelColor(i, ((r << 16) + (g << 8) + b)) 
+                
+                
+            }
+            Callistrip.show();
+        }
+
+
     //% block="show rainbowcolor at pixel %pixel || brightness %brightnes |\\%"
     //% block.loc.de="zeige Regenbogenfarbe an Pixel %pixel || Helligkeit %brightnes |\\%"
     //% pixel.min=0 pixel.max=11 brightnes.defl=cbrightness.hp1
