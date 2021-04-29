@@ -55,10 +55,12 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
          * @param startColor the start color
          * @param endColor the end color
          */
-        //% blockId=lightsetgradient block="zeige Farbverlauf von %startColor=CalliColorNumberPicker nach %endColor=CalliColorNumberPicker"
-        //%  startColor.defl=0xff0000
-        //%   endColor.defl=0x0000ff
-        export function setGradient(startColor: number, endColor: number) {
+        //% blockId=lightsetgradient block="zeige Farbverlauf von %startColor=CalliColorNumberPicker nach %endColor=CalliColorNumberPicker ||von Pixel %startp nach Pixel %endp"
+        //% startColor.defl=0xff0000 endColor.defl=0x00ff00
+        //% startp.defl=0 endp.defl=11
+        //% expandableArgumentMode="toggle"
+        //% inlineInputMode=inline
+        export function setGradient(startColor: number, endColor: number, startp:number=0,endp:number=11) {
             const sr = (startColor & 0xff0000) >> 16;
             const sg = (startColor & 0xff00) >> 8;
             const sb = (startColor & 0xff);
@@ -66,10 +68,10 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
             const eg = (endColor & 0xff00) >> 8;
             const eb = (endColor & 0xff);;
 
-            const end = 12; //12;
-            const start = 0; //0
-            const n1 = 11//end-start-1; 
-            for (let i = start; i < end; ++i) {
+            const end = endp;
+            const start = startp
+            const n1 = end-start 
+            for (let i = start; i <= end; ++i) {
                 let x = (i-start) / n1; 
                 const ox = 1 - x;
                 const r = (sr * ox + er * x) | 0;
