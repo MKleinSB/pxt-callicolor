@@ -55,8 +55,9 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
          * @param startColor the start color
          * @param endColor the end color
          */
-        //% blockId=lightsetgradient block="show gradient from %startColor=CalliColorNumberPicker to %endColor=CalliColorNumberPicker ||startpixel %startp endpixel %endp"
-        //% block.loc.de=block="zeige Farbverlauf von %startColor=CalliColorNumberPicker nach %endColor=CalliColorNumberPicker ||von Pixel %startp nach Pixel %endp"
+        //% blockId=lightsetgradient 
+        //% block="show gradient from %startColor=CalliColorNumberPicker to %endColor=CalliColorNumberPicker ||startpixel %startp endpixel %endp"
+        //% block.loc.de="zeige Farbverlauf von %startColor=CalliColorNumberPicker nach %endColor=CalliColorNumberPicker ||von Pixel %startp nach Pixel %endp"
         //% startColor.defl=0xff0000 endColor.defl=0x00ff00
         //% startp.defl=0 endp.defl=11
         //% expandableArgumentMode="toggle"
