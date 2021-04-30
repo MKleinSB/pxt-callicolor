@@ -50,7 +50,7 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
         Callistrip.show()
     }
 
-/**
+        /**
          * Sets a gradient between two colors
          * @param startColor the start color
          * @param endColor the end color
@@ -62,19 +62,20 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
         //% startp.defl=0 endp.defl=11
         //% expandableArgumentMode="toggle"
         //% inlineInputMode=inline
-        export function setGradient(startColor: number, endColor: number, startp:number=0,endp:number=11) {
+        export function setGradient(startColor: number, endColor: number, startp:number=0, endp:number=11) {
             const sr = (startColor & 0xff0000) >> 16;
             const sg = (startColor & 0xff00) >> 8;
             const sb = (startColor & 0xff);
             const er = (endColor & 0xff0000) >> 16;
             const eg = (endColor & 0xff00) >> 8;
-            const eb = (endColor & 0xff);;
-            if (endp < startp || endp - startp < 2|| endp<0 || startp<0) {
-	            startp=0;
+            const eb = (endColor & 0xff);
+            if (Math.abs(endp - startp) < 3 ) {
+                startp=0;
                 endp=11;
             }
             const end = endp;
             const start = startp
+           if (endp > startp) {
             const n1 = end-start
             for (let i = start; i <= end; ++i) {
                 let x = (i-start) / n1; 
@@ -82,12 +83,20 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
                 const r = (sr * ox + er * x) | 0;
                 const g = (sg * ox + eg * x) | 0;
                 const b = (sb * ox + eb * x) | 0;
-
-                Callistrip.setPixelColor(i, ((r << 16) + (g << 8) + b)) 
-                
-                
+                Callistrip.setPixelColor(i, ((r << 16) + (g << 8) + b))                 
+            } 
+            } else {
+             const n1 = start-end
+             for (let i = start; i >= end; --i) {
+                let x = (i-end) / n1; 
+                const ox = 1 - x;
+                const r = (er * ox + sr * x) | 0;
+                const g = (eg * ox + sg * x) | 0;
+                const b = (eb * ox + sb * x) | 0;
+                Callistrip.setPixelColor(i, ((r << 16) + (g << 8) + b))
+             } 
             }
-            Callistrip.show();
+           Callistrip.show();
         }
 
 
