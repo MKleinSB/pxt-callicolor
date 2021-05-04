@@ -29,7 +29,7 @@ const enum cbrightness {
 namespace CalliColor {
    
 let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
-               0x00FFFE, 0x007FFF,0x0000FF,0x7F00FF,0xFE00FF,0xFF007F]
+               0x00FFFE, 0x0040FF,0x0000FF,0x6000FF,0xFE00FF,0xFF0040]
 
     //% block="show color %color at pixel %pixel || brightness %brightnes |\\%"
     //% block.loc.de="zeige Farbe %color an Pixel %pixel || Helligkeit %brightnes |\\%"
@@ -127,11 +127,11 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
     //% color5.shadow="CalliColorNumberPicker"  color5.defl=0x00FF00
     //% color6.shadow="CalliColorNumberPicker"  color6.defl=0x00FF7F
     //% color7.shadow="CalliColorNumberPicker"  color7.defl=0x00FFFE
-    //% color8.shadow="CalliColorNumberPicker"  color8.defl=0x007FFF
+    //% color8.shadow="CalliColorNumberPicker"  color8.defl=0x0040FF
     //% color9.shadow="CalliColorNumberPicker"  color9.defl=0x0000FF
-    //% color10.shadow="CalliColorNumberPicker"  color10.defl=0x7F00FF
+    //% color10.shadow="CalliColorNumberPicker"  color10.defl=0x6000FF
     //% color11.shadow="CalliColorNumberPicker"  color11.defl=0xFE00FF
-    //% color12.shadow="CalliColorNumberPicker"  color12.defl=0xFF007F
+    //% color12.shadow="CalliColorNumberPicker"  color12.defl=0xFF0040
     //% inlineInputMode=inline
 
     export function ShowColorPixel(color1: number, color2: number, color3: number, color4: number, color5: number, color6: number, color7: number, color8: number, color9: number, color10: number, color11: number, color12: number) {
