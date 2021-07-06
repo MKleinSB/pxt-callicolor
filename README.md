@@ -23,6 +23,87 @@ Mehr zu CalliColor auf hackster! https://www.hackster.io/MKlein/callicolor-01cc4
 
 ![](https://github.com/mkleinsb/pxt-callicolor/raw/master/Unbenannt.png)
 
+## Blöcke 
+### zeige Farbe an Pixel
+
+Lässt eine LED (Pixel) des Callicolor in einer bestimmten Farbe leuchten. Optional kann eine von 5 Helligkeitsstufen angegeben werden.
+Voreingestellt sind immer 100%. Um einen **Pixel auszuschalten** wählt man die Farbe Schwarz.
+
+```sig
+CalliColor.ShowColorOnPixelbright(CalliColor.CalliColorNumberPicker(0x0087ff), 1, cbrightness.hp2)
+```
+
+### zeige Farbverlauf
+
+Erstellt einen Farbverlauf von der ersten zur zweiten angegebenen Farbe. Start- und Endpixel können angegeben werden. Liegen die Farben im HSL-Varlauf zu 
+weit auseinander erfolgt der Farbverlauf über die Farbe weiß
+
+```sig
+CalliColor.setGradient(CalliColor.CalliColorNumberPicker(0xff0000), CalliColor.CalliColorNumberPicker(0x00ff00), 0, 11)
+```
+
+### zeige Regenbogenfarbe an Pixel
+Zeigt den angegebenen Pixel in der dem Pixel zugehörigen Regenbogenfarbe. Optional mit Helligkeitseinstellung.
+
+```sig
+CalliColor.ShowRainbowColorOnPixelbright(0, cbrightness.hp1)
+```
+
+### zeige Farben an Ring
+
+Zeigt für jeden der 12 Pixel des Rings eine einstellbare Farbe an. Voreingestellt ist ein Farbverlauf.
+
+```sig
+CalliColor.ShowColorPixel(CalliColor.CalliColorNumberPicker(0xff0000), CalliColor.CalliColorNumberPicker(0xFF7F00), CalliColor.CalliColorNumberPicker(0xFFFE00), CalliColor.CalliColorNumberPicker(0x7FFF00), CalliColor.CalliColorNumberPicker(0x00FF00), CalliColor.CalliColorNumberPicker(0x00FF7F), CalliColor.CalliColorNumberPicker(0x00FFFE), CalliColor.CalliColorNumberPicker(0x0040FF), CalliColor.CalliColorNumberPicker(0x0000FF), CalliColor.CalliColorNumberPicker(0x6000FF), CalliColor.CalliColorNumberPicker(0xFE00FF), CalliColor.CalliColorNumberPicker(0xFF0040))
+```
+
+### zeige Ringfarbe
+
+Stellt eine einheitliche Farbe für alle LEDs ein. Auch hier schaltet die Farbe Schwarz den ganzenn Ring aus.
+
+```sig
+CalliColor.showCalliColor(CalliColor.CalliColorNumberPicker(0x4df243))
+```
+
+### Pixel rotieren
+
+Verschiebt die Pixel wahlweise vorwärts oder rückwärts. Damit das nicht zu schnell geht sollte man danach ein 
+```sig
+basic.pause(100) 
+```
+aufrufen
+
+```sig
+CalliColor.Callirotate(Richtung.forward)
+```
+
+## ... mehr 
+### Toleranz bei Farberkennung
+
+Hiermit kann die Toleranz der Farberkennung verschärft oder erweitert werde. Voreinstellt ist +-30, d.h. jeder einzelne RGB-Wert kann um 30 nach oben oder unten abweichen. Den Wert sollte man verringern wenn die Farben nicht unterschieden werden können. 
+
+```sig
+TCS34725.Toleranzf(30)
+```
+
+
+### Farberkennung RGB
+
+Liest den Farbsensor aus und vergleicht die Werte mit den angegebenen RGB Werten. Um ungleichmäßigen Farbauftrag auszugleichen haben alle RGB-Werte eine voreingestellte Toleranz von +-30. Diese kann über den Toleranzblock angepasst werden. 
+
+```sig
+TCS34725.Farberkennung(0, 0, 0)
+```
+
+
+### Farbmemory
+
+Merke Dir die Reihenfolge der Farben beim Farbmemoryspiel
+
+```sig
+TCS34725.Farbmemory
+```
+
 #### Metadaten (verwendet für Suche, Rendering)
 
 * for PXT/calliopemini
