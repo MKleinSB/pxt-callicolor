@@ -115,7 +115,7 @@ CalliColor.CalliBrightness(128)
 
 
 ### zeige Kreisdiagramm
-Zeigt ein Kreis basierend auf `wert` und `max`.
+Zeigt ein Kreisdiagramm basierend auf `wert` und `max`.
 Wenn `max` 0 ist, wird der Ausschlag automatisch angepasst.
 
 ```sig
