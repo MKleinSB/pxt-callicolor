@@ -24,6 +24,8 @@ Mehr zu CalliColor auf hackster! https://www.hackster.io/MKlein/callicolor-01cc4
 ![](https://github.com/mkleinsb/pxt-callicolor/raw/master/Unbenannt.png)
 
 ## Blöcke 
+Da der Callicolor nichts anderes als 12 Neopixel am Pin P0 ist kann man auch die Befehle der Neopixel-Erweiterung verwenden welche automatisch mit geladen wird.
+
 ### zeige Farbe an Pixel
 
 Lässt eine LED (Pixel) des Callicolor in einer bestimmten Farbe leuchten. Optional kann eine von 5 Helligkeitsstufen angegeben werden.
@@ -77,32 +79,49 @@ aufrufen
 CalliColor.Callirotate(Richtung.forward)
 ```
 
-## ... mehr 
-### Toleranz bei Farberkennung
-
-Hiermit kann die Toleranz der Farberkennung verschärft oder erweitert werde. Voreinstellt ist +-30, d.h. jeder einzelne RGB-Wert kann um 30 nach oben oder unten abweichen. Den Wert sollte man verringern wenn die Farben nicht unterschieden werden können. 
+## Farben
+### Zufallsfarbe
+Erzeugt eine Zufallsfarbe für die obigen zeige ... Blöcke die z.B. für ein Farbmemory verwendet werden kann. 
 
 ```sig
-TCS34725.Toleranzf(30)
+CalliColor.ShowRandomColor()
 ```
 
 
-### Farberkennung RGB
+### RGB
 
-Liest den Farbsensor aus und vergleicht die Werte mit den angegebenen RGB Werten. Um ungleichmäßigen Farbauftrag auszugleichen haben alle RGB-Werte eine voreingestellte Toleranz von +-30. Diese kann über den Toleranzblock angepasst werden. 
+Erzeugt einen RGB-Farbton.
 
 ```sig
-TCS34725.Farberkennung(0, 0, 0)
+CalliColor.rgb(0, 0, 0)
 ```
 
 
-### Farbmemory
+### HSL
 
-Merke Dir die Reihenfolge der Farben beim Farbmemoryspiel
+Erzeugt einen HSL-Farbton.
 
 ```sig
-TCS34725.Farbmemory
+CalliColor.callihsl(0, 99, 50)
 ```
+
+## ...mehr
+### setze Helligkeit auf
+Stellt die Grundhelligkeit der Neopixel ein (0-255). Voreingestellt ist 128. Darauf bezieht sich auch die prozentuale Helligkeit bei den Helligkeitsstufen.
+
+```sig
+CalliColor.CalliBrightness(128)
+```
+
+
+### zeige Kreisdiagramm
+Zeigt ein Kreis basierend auf `wert` und `max`.
+Wenn `max` 0 ist, wird der Ausschlag automatisch angepasst.
+
+```sig
+CalliColor.showCalliBarGraph(0, 1023)
+```
+
 
 #### Metadaten (verwendet für Suche, Rendering)
 
