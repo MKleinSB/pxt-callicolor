@@ -244,6 +244,7 @@ let ccolors = [0xff0000, 0xFF7F00,0xFFFE00,0x7FFF00,0x00FF00,0x00FF7F,
     */
     //% blockId=CalliColorNumberPicker block="%value"
     //% blockHidden=true
+    //% shim=TD_ID colorSecondary="#FFFFFF"
     //% value.fieldEditor="colornumber" value.fieldOptions.decompileLiterals=true
     //% weight=150
     //% value.fieldOptions.colours='["#ffffff","#ff0000","#ffaa00","#ffdc00","#ffff00","#eaff00","#8eff00","#4df243","#42b87f","#00ffdc","#00dcff","#00a3ff","#0087ff","#acb3f3","#e0acfe","#a300ff","#ea00ff","#ff00e3","#fdd3f8","#f1d07e","#a8b5f5","#C3C6D8", "#f3f2da","#727474", "#000000"]'
